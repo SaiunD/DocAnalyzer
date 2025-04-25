@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --background: #f9fafb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --accent: #dbeafe;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card);
+            padding: 2rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        input[type="file"],
+        select,
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0 1rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #4338ca;
+        }
+
+        h2 {
+            margin-top: 2rem;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        pre {
+            background-color: var(--accent);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Analyzer</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="document" required>
+            <select name="mode">
+                <option value="summary">Summary</option>
+                <option value="contents">Contents & Theses</option>
+            </select>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if result %}
+            <h2>Result</h2>
+            <pre>{{ result }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>
